@@ -12,7 +12,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "preserve",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
+    "types": [
+      "@types/chai",
+      "@types/jest"
+    ]
   },
   "include": [
     "./**/*.ts"
