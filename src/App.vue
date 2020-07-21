@@ -1,24 +1,29 @@
 <template>
-    <div id="app">
-        sdsdds
-        {{ message }}
+    <div>
+        <p>{{ myDataProperty }}</p>
+        <input :value="myDataProperty" @input="updateMyProperty($event)"/>
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                message: 'Hello World',
-            };
-        },
-    };
-</script>
+<script lang="ts">
+    import Vue from 'vue'
+    import { Component } from 'vue-property-decorator'
 
-<style>
-    #app {
-        font-size: 18px;
-        font-family: 'Roboto', sans-serif;
-        color: blue;
+    import temp from './temp.ts';
+
+    @Component
+    export default class App extends Vue {
+        // Data property
+        myDataProperty: string = '';
+
+        // Lifecycle hook
+        mounted () {
+            this.myDataProperty = 'Boop'
+        }
+
+        // Component method
+        updateMyProperty ($event: any) {
+            this.myDataProperty = temp($event.target.value);
+        }
     }
-</style>
+</script>
