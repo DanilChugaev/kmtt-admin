@@ -15,15 +15,15 @@ module.exports = {
                         loader: 'ts-loader',
                         options: {
                             appendTsSuffixTo: [/\.vue$/],
-                            appendTsxSuffixTo: [/\.vue$/]
-                        }
-                    }
-                ]
+                            appendTsxSuffixTo: [/\.vue$/],
+                        },
+                    },
+                ],
             },
             { test: /\.js$/, use: 'babel-loader' },
             { test: /\.vue$/, use: 'vue-loader' },
             { test: /\.css$/, use: ['vue-style-loader', 'css-loader']},
-        ]
+        ],
     },
     devServer: {
         open: true,
@@ -31,9 +31,9 @@ module.exports = {
     },
     resolve: {
         alias: {
-            vue$: 'vue/dist/vue.esm.js'
+            vue$: 'vue/dist/vue.esm.js',
         },
-        extensions: ['.ts', '.tsx', '.js']
+        extensions: ['.ts', '.tsx', '.js'],
     },
     devtool: 'source-map',
     plugins: [
@@ -42,5 +42,5 @@ module.exports = {
         }),
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-    ]
+    ],
 };
