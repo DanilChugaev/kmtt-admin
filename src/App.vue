@@ -12,7 +12,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import temp from './temp.ts';
+import temp from './temp';
 
 @Component
 export default class App extends Vue {
