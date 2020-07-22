@@ -1,10 +1,7 @@
-/* global module require */
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const webpack = require('webpack');
+const path = require('path');
+const rootPath = path.resolve(__dirname, '../');
 
 module.exports = {
-    entry: './src/main.ts',
     module: {
         rules: [
             {
@@ -22,8 +19,13 @@ module.exports = {
                 ],
             },
             { test: /\.js$/, use: 'babel-loader' },
-            { test: /\.vue$/, use: 'vue-loader'},
-            { test: /\.scss$/, use: ['vue-style-loader', 'css-loader', 'sass-loader']},
+            {
+            test: /\.scss$/,
+                use: [
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
             {
                 test: /\.pug$/,
                 exclude: /(node_modules)/,
@@ -31,22 +33,10 @@ module.exports = {
             },
         ],
     },
-    devServer: {
-        open: true,
-        hot: true,
-    },
     resolve: {
         alias: {
-            vue$: 'vue/dist/vue.esm.js',
+        '~': rootPath,
         },
-        extensions: ['.ts', '.tsx', '.js'],
-    },
-    devtool: 'source-map',
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
-        new VueLoaderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-    ],
+        extensions: ['.ts', '.tsx']
+    }
 };

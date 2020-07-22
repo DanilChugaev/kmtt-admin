@@ -5,6 +5,7 @@
       :value="myDataProperty"
       @input="updateMyProperty($event)"
     >
+    <ui-button text="sdd"></ui-button>
   </div>
 </template>
 
@@ -13,8 +14,13 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 import temp from './temp';
+import UiButton from './Button.vue';
 
-@Component
+@Component({
+    components: {
+        UiButton,
+    },
+})
 export default class App extends Vue {
     // Data property
     myDataProperty: string = ''

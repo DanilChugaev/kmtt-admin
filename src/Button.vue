@@ -1,7 +1,6 @@
-<template>
-  <button type="button">
-    {{ buttonTextComputed }}
-  </button>
+<template lang="pug">
+    .button-container
+        button.button {{ buttonTextComputed }}
 </template>
 
 <script lang="ts">
@@ -10,7 +9,7 @@ import { Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Button extends Vue {
-    @Prop([String]) readonly text: string;
+    @Prop([String]) readonly text!: string;
 
     buttonText: string = 'просто кнопка';
 
@@ -19,3 +18,9 @@ export default class Button extends Vue {
     }
 }
 </script>
+
+<style lang="scss">
+    .button {
+        width: 200px;
+    }
+</style>
