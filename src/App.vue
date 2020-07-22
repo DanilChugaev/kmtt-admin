@@ -1,20 +1,9 @@
-<template>
-  <div>
-    <p>{{ myDataProperty }}</p>
-    <input
-      :value="myDataProperty"
-      @input="updateMyProperty($event)"
-    >
-    <ui-button text="sdd"></ui-button>
-  </div>
-</template>
-
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import temp from './temp';
-import UiButton from './Button.vue';
+import temp from './helpers/temp';
+import UiButton from './components/ui-kit/UiButton/UiButton.vue';
 
 @Component({
     components: {
@@ -36,3 +25,13 @@ export default class App extends Vue {
     }
 }
 </script>
+
+<template lang="pug">
+    div
+        p {{ myDataProperty }}
+        input(
+            :value="myDataProperty"
+            @input="updateMyProperty($event)"
+        )
+        UiButton Жмякни
+</template>

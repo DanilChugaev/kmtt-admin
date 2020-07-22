@@ -1,8 +1,3 @@
-<template lang="pug">
-    .button-container
-        button.button {{ buttonTextComputed }}
-</template>
-
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
@@ -18,6 +13,12 @@ export default class Button extends Vue {
     }
 }
 </script>
+
+<template lang="pug">
+    .button-container
+        button.button
+            slot
+</template>
 
 <style lang="scss">
     .button {
