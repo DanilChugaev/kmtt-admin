@@ -39,7 +39,7 @@ module.exports = {
         alias: {
             vue$: 'vue/dist/vue.esm.js',
         },
-        extensions: ['.ts', '.tsx', '.js'],
+        extensions: ['.ts', '.vue', '.js'],
     },
     devtool: 'source-map',
     plugins: [

@@ -11,5 +11,5 @@ export const withText = () => ({
 
 export const asAComponent = () => ({
     components: { MyButton },
-    template: '<my-button :text="`Кастомный текст у кнопки`"></my-button>',
+    template: '<my-button :text="`Добавить пользователя`"></my-button>',
 });

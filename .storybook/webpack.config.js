@@ -4,20 +4,6 @@ const rootPath = path.resolve(__dirname, '../');
 module.exports = {
     module: {
         rules: [
-            {
-                test: /\.tsx?$/,
-                exclude: /node_modules/,
-                use: [
-                    'babel-loader',
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            appendTsSuffixTo: [/\.vue$/],
-                            appendTsxSuffixTo: [/\.vue$/],
-                        },
-                    },
-                ],
-            },
             { test: /\.js$/, use: 'babel-loader' },
             {
             test: /\.scss$/,
@@ -37,6 +23,6 @@ module.exports = {
         alias: {
         '~': rootPath,
         },
-        extensions: ['.ts', '.tsx']
+        extensions: ['.ts', '.vue', '.js']
     }
 };
