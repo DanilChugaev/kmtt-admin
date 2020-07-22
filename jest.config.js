@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-undef
+/* global module */
 module.exports = {
     transform: {
         '^.+\\.vue$': 'vue-jest',
