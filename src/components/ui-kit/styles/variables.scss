@@ -1,0 +1,6 @@
+/* интерактивность */
+@mixin ui-kit-disable-interactive() {
+    user-select: none;
+    pointer-events: none;
+    cursor: default;
+}

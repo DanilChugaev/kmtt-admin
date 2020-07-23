@@ -1,8 +1,11 @@
 /* global describe it expect page */
 describe('Button', () => {
+    /** Указываем названия страниц с компонентами (названия см. в UiButton.stories.js) через kebab-case */
     const buttons = [
         'simple-button',
-        'with-color',
+        'disabled-button',
+        'green-button',
+        'red-button',
     ];
 
     buttons.forEach(button => {

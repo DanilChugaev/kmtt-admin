@@ -1,0 +1,4 @@
+/* тени */
+@mixin ui-kit-button-shadow($color) {
+    box-shadow: 0 10px 10px 0 rgba($color, 0.3);
+}

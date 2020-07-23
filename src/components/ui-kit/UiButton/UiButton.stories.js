@@ -9,7 +9,17 @@ export const simpleButton = () => ({
     template: '<ui-button>Добавить пользователя</ui-button>',
 });
 
-export const withColor = () => ({
+export const disabledButton = () => ({
     components: { UiButton },
-    template: '<ui-button color="green">Подтвердить действие</ui-button>',
+    template: '<ui-button :disabled="true">Кнопка заблокирована</ui-button>',
+});
+
+export const greenButton = () => ({
+    components: { UiButton },
+    template: '<ui-button background="green">Подтвердить</ui-button>',
+});
+
+export const redButton = () => ({
+    components: { UiButton },
+    template: '<ui-button background="red">Удалить</ui-button>',
 });
