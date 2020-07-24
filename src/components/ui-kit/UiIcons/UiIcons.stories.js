@@ -8,6 +8,8 @@ import UiIconSearch from './UiIconSearch.vue';
 import UiIconSettings from './UiIconSettings.vue';
 import UiIconUser from './UiIconUser.vue';
 import UiIconWarning from './UiIconWarning.vue';
+import UiIconCheck from './UiIconCheck.vue';
+import UiIconAction from './UiIconAction.vue';
 
 export default {
     title: 'UiIcons',
@@ -25,6 +27,8 @@ export const icons = () => ({
         UiIconSettings,
         UiIconUser,
         UiIconWarning,
+        UiIconCheck,
+        UiIconAction,
     },
     template:
     '<div style="display: flex; flex-direction: column;">' +
@@ -86,6 +90,18 @@ export const icons = () => ({
             '<ui-icon-warning :size="100"/>' +
             '<ui-icon-warning :size="50"/>' +
             '<ui-icon-warning/>' +
+        '</div>' +
+
+        '<div>' +
+            '<ui-icon-check :size="100"/>' +
+            '<ui-icon-check :size="50"/>' +
+            '<ui-icon-check/>' +
+        '</div>' +
+
+        '<div>' +
+            '<ui-icon-action :size="100"/>' +
+            '<ui-icon-action :size="50"/>' +
+            '<ui-icon-action/>' +
         '</div>' +
     '</div>',
 });
