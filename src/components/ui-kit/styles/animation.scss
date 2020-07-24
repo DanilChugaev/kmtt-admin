@@ -1,0 +1,9 @@
+/* анимации */
+@mixin ui-kit-color-animation() {
+    transition-property: color;
+    transition: color 200ms linear;
+}
+@mixin ui-kit-border-animation() {
+    transition-property: border;
+    transition: border 200ms linear;
+}
