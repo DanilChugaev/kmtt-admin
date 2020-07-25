@@ -60,14 +60,16 @@ export default class Button extends Vue {
     @import '../styles/variables.scss';
     @import '../styles/color.scss';
     @import '../styles/shadow.scss';
+    @import '../styles/typography.scss';
 
     .button {
-        font-family: Arial, sans-serif;
+        @include ui-kit-typography;
+
         font-size: 27px;
-        letter-spacing: 1.1px;
+        letter-spacing: 0.6px;
         line-height: 1.2;
         color: $ui-kit-color-white;
-        padding: 24px 40px;
+        padding: 24px 41px;
         border: none;
         outline: none;
         cursor: pointer;

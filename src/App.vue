@@ -37,6 +37,8 @@ export default class App extends Vue {
 </template>
 
 <style lang="scss">
+    @import './static/fonts.css';
+
     *,
     *::before,
     *::after {
