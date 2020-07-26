@@ -9,7 +9,7 @@ export default class UiLink extends Vue {
          * @type {String}
          */
         @Prop({
-            default: '',
+            default: undefined,
         }) readonly href!: string;
 
         /**
@@ -112,16 +112,17 @@ export default class UiLink extends Vue {
         position: relative;
         text-decoration: none;
         color: $ui-kit-color-dark-blue;
-
-        &:hover {
-            color: $ui-kit-color-blue;
-        }
+        cursor: pointer;
 
         .icon {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 33px;
+            height: 33px;
             position: absolute;
             top: 50%;
-            left: 0;
+            left: 25px;
             transform: translateY(-50%);
         }
 
@@ -142,7 +143,7 @@ export default class UiLink extends Vue {
         }
 
         &._text-with-icon {
-            padding-left: 60px;
+            padding-left: 85px;
         }
     }
 </style>

@@ -31,7 +31,7 @@ export const icons = () => ({
         UiIconAction,
     },
     template:
-    '<div style="display: flex; flex-direction: column;">' +
+    '<div style="display: flex; flex-direction: column; color: #909198;">' +
         '<div>' +
             '<ui-icon-at-sign :size="100"/>' +
             '<ui-icon-at-sign :size="50"/>' +
