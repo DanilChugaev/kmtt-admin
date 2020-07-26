@@ -34,6 +34,11 @@ export default class App extends Vue {
             @input="updateMyProperty($event)"
         )
         UiButton Жмякни
+        router-link(
+            to="/hello"
+        ) hello
+
+        router-view
 </template>
 
 <style lang="scss">
