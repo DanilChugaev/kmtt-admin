@@ -57,10 +57,10 @@ export default class Button extends Vue {
 </template>
 
 <style lang="scss">
-    @import '../styles/variables.scss';
-    @import '../styles/color.scss';
-    @import '../styles/shadow.scss';
-    @import '../styles/typography.scss';
+    @import '~/components/ui-kit/styles/variables.scss';
+    @import '~/components/ui-kit/styles/color.scss';
+    @import '~/components/ui-kit/styles/shadow.scss';
+    @import '~/components/ui-kit/styles/typography.scss';
 
     .button {
         @include ui-kit-typography;

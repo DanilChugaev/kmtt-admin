@@ -2,11 +2,11 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import UiList from '../../UiList.vue';
+import UiList from '~/components/ui-kit/UiList/UiList.vue';
 
-import UiLink from '../../../UiLink/UiLink.vue';
+import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
 
-import ListItem from '../../../../../interfaces/ListItem.ts';
+import ListItem from '~/interfaces/ListItem.ts';
 
 @Component({
     components: {
@@ -75,7 +75,7 @@ export default class SimpleLinkCase extends Vue {
 </template>
 
 <style lang="scss" scoped>
-    @import '../../../styles/color.scss';
+    @import '~/components/ui-kit/styles/color.scss';
 
     .link {
         font-size: 28px;

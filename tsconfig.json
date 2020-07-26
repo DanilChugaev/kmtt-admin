@@ -16,7 +16,13 @@
     "types": [
       "@types/chai",
       "@types/jest"
-    ]
+    ],
+    "baseUrl": "src/",
+    "paths": {
+      "~/*": [
+        "./*"
+      ]
+    }
   },
   "include": [
     "./**/*.ts"

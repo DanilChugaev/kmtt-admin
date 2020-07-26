@@ -1,5 +1,6 @@
 import UiLink from './UiLink.vue';
-import UiIconSettings from '../UiIcons/UiIconSettings.vue';
+
+import UiIconSettings from '~/components/ui-kit/UiIcons/UiIconSettings.vue';
 
 export default {
     title: 'UiLink',

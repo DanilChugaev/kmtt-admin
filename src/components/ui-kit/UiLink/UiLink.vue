@@ -97,9 +97,9 @@ export default class UiLink extends Vue {
 </template>
 
 <style lang="scss" scoped>
-    @import '../styles/color.scss';
-    @import '../styles/typography.scss';
-    @import '../styles/animation.scss';
+    @import '~/components/ui-kit/styles/color.scss';
+    @import '~/components/ui-kit/styles/typography.scss';
+    @import '~/components/ui-kit/styles/animation.scss';
 
     .link {
         @include ui-kit-color-animation;

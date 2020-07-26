@@ -2,9 +2,9 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
-import UiLink from '../UiLink/UiLink.vue';
+import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
 
-import ListItem from '../../../interfaces/ListItem';
+import ListItem from '~/interfaces/ListItem';
 
 @Component({
     components: {
@@ -34,7 +34,7 @@ export default class UiList extends Vue {
 </template>
 
 <style lang="scss" scoped>
-    @import '../styles/color.scss';
+    @import '~/components/ui-kit/styles/color.scss';
 
     .list {
         padding: 10px 0;

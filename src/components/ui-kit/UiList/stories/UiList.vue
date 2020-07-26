@@ -24,5 +24,5 @@ export default class UiListStories extends Vue {}
 </template>
 
 <style lang="scss">
-    @import '../../styles/storybook.scss';
+    @import '~/components/ui-kit/styles/storybook.scss';
 </style>

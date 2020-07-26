@@ -1,7 +1,9 @@
-/* global module require */
+/* global module require __dirname */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
+const path = require('path');
+const rootPath = path.resolve(__dirname, 'src/');
 
 module.exports = {
     entry: './src/main.ts',
@@ -50,6 +52,7 @@ module.exports = {
     resolve: {
         alias: {
             vue$: 'vue/dist/vue.esm.js',
+            '~': rootPath,
         },
         extensions: ['.ts', '.vue', '.js'],
     },

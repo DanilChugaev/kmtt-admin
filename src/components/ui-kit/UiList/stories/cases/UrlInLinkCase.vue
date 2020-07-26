@@ -2,13 +2,14 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import UiList from '../../UiList.vue';
-import UiLink from '../../../UiLink/UiLink.vue';
-import UiIconSettings from '../../../UiIcons/UiIconSettings.vue';
-import UiIconMenu from '../../../UiIcons/UiIconMenu.vue';
-import UiIconWarning from '../../../UiIcons/UiIconWarning.vue';
+import UiList from '~/components/ui-kit/UiList/UiList.vue';
 
-import ListItem from "../../../../../interfaces/ListItem.ts";
+import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
+import UiIconSettings from '~/components/ui-kit/UiIcons/UiIconSettings.vue';
+import UiIconMenu from '~/components/ui-kit/UiIcons/UiIconMenu.vue';
+import UiIconWarning from '~/components/ui-kit/UiIcons/UiIconWarning.vue';
+
+import ListItem from "~/interfaces/ListItem.ts";
 
 @Component({
     components: {
@@ -74,7 +75,7 @@ export default class UrlInLinkCase extends Vue {
 </template>
 
 <style lang="scss" scoped>
-    @import '../../../styles/color.scss';
+    @import '~/components/ui-kit/styles/color.scss';
 
     .link {
         font-size: 28px;
