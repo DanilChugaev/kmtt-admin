@@ -25,7 +25,10 @@ export default class Button extends Vue {
         default: false,
     }) readonly disabled!: boolean;
 
-    /** Навешиваем классы состояний */
+    /**
+     * Навешиваем классы состояний
+     * @return {Array<string>}
+     */
     get viewClass(): Array<string> {
         const result = [
             `_${this.background}`,
@@ -35,7 +38,27 @@ export default class Button extends Vue {
             result.push('_disabled');
         }
 
+        if (this.hasIconSlot) {
+            result.push('_has-icon');
+        }
+
         return result;
+    }
+
+    /**
+     * Имеет ли кнопка содержимое в слоте icon
+     * @return {boolean}
+     */
+    get hasIconSlot(): boolean {
+        return Boolean(this.$slots.icon);
+    }
+
+    /**
+     * Имеет ли кнопка содержимое в дефолтном слоте
+     * @return {boolean}
+     */
+    get hasDefaultSlot(): boolean {
+        return Boolean(this.$slots.default);
     }
 
     /** Обработчик нажатия на кнопку */
@@ -53,7 +76,10 @@ export default class Button extends Vue {
         :class="viewClass"
         @click="click"
     )
-        slot
+        .icon(v-if="hasIconSlot")
+            slot(name="icon")
+        span.text(v-if="hasDefaultSlot")
+            slot
 </template>
 
 <style lang="scss">
@@ -113,6 +139,16 @@ export default class Button extends Vue {
             @include ui-kit-disable-interactive;
             background-color: $ui-kit-color-light-gray;
             box-shadow: none;
+        }
+
+        &._has-icon {
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: none;
+
+            .icon {
+                display: flex;
+            }
         }
     }
 </style>

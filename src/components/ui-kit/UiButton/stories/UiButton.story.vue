@@ -6,6 +6,7 @@ import SimpleButtonCase from './cases/SimpleButtonCase.vue';
 import DisabledButtonCase from './cases/DisabledButtonCase.vue';
 import GreenButtonCase from './cases/GreenButtonCase.vue';
 import RedButtonCase from './cases/RedButtonCase.vue';
+import IconButtonCase from './cases/IconButtonCase.vue';
 
 @Component({
     components: {
@@ -13,6 +14,7 @@ import RedButtonCase from './cases/RedButtonCase.vue';
         DisabledButtonCase,
         GreenButtonCase,
         RedButtonCase,
+        IconButtonCase,
     },
 })
 export default class UiButtonStories extends Vue {}
@@ -24,6 +26,7 @@ export default class UiButtonStories extends Vue {}
         DisabledButtonCase.mb-20
         GreenButtonCase.mb-20
         RedButtonCase.mb-20
+        IconButtonCase.mb-20
 </template>
 
 <style lang="scss">
