@@ -19,8 +19,8 @@ export default class UiGridStories extends Vue {}
 <template lang="pug">
     div
         LinkButtonGridCase.mb-20
-        SimpleGridCase.mb-20
         SearchGridCase.mb-20
+        SimpleGridCase.mb-20
 </template>
 
 <style lang="scss">

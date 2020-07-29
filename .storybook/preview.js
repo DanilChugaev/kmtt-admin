@@ -7,6 +7,7 @@ import UiInput from '~/components/ui-kit/UiInput/stories/UiInput.story.vue';
 import UiGrid from '~/components/ui-kit/UiGrid/stories/UiGrid.story.vue';
 import UiLink from '~/components/ui-kit/UiLink/stories/UiLink.story.vue';
 import UiList from '~/components/ui-kit/UiList/stories/UiList.story.vue';
+import UiPopover from '~/components/ui-kit/UiPopover/stories/UiPopover.story.vue';
 
 configure(() => {
     storiesOf('UI-kit', module)
@@ -16,5 +17,6 @@ configure(() => {
         .add('UiInput', () => UiInput)
         .add('UiGrid', () => UiGrid)
         .add('UiLink', () => UiLink)
-        .add('UiList', () => UiList);
+        .add('UiList', () => UiList)
+        .add('UiPopover', () => UiPopover);
 }, module);

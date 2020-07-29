@@ -2,3 +2,6 @@
 @mixin ui-kit-button-shadow($color) {
     box-shadow: 0 10px 10px 0 rgba($color, 0.3);
 }
+@mixin ui-kit-popover-shadow($color) {
+    box-shadow: 0 8px 13px 6px rgba($color, 0.8);
+}
