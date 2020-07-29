@@ -4,13 +4,15 @@ import { Component } from 'vue-property-decorator';
 
 import UiGrid from '~/components/ui-kit/UiGrid/UiGrid.vue';
 
+import { Columns } from '~/interfaces/Grid.ts';
+
 @Component({
     components: {
         UiGrid,
     },
 })
 export default class SimpleGridCase extends Vue {
-    columns: Array<any> = [
+    columns: Array<Columns> = [
         { title: 'ID', icon: 'UiIconList' },
         { title: 'Имя', icon: 'UiIconUser' },
         { title: 'Email', icon: 'UiIconAtSign' },
@@ -31,6 +33,13 @@ export default class SimpleGridCase extends Vue {
             'Имя': { title: 'Alex Stone' },
             'Email': { title: 'alexstone.greatsoul@gmail.com' },
             'Статус': { title: '✅ Активен' },
+            'Действия': { title: 'Действие', position: 'center' },
+        },
+        {
+            'ID': { title: '789' },
+            'Имя': { title: 'Bob Stone' },
+            'Email': { title: 'bobstone.greatsoul@gmail.com' },
+            'Статус': { title: 'Неактивен' },
             'Действия': { title: 'Действие', position: 'center' },
         },
     ]
