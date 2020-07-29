@@ -148,7 +148,7 @@ export default class UiGrid extends Vue {
                 UiIconChevronDown.sorting(
                     slot="icon"
                     :size="28"
-                    :class="sortOrders[column.title] > 0 ? '_inc' : '_dec'"
+                    :class="sortOrders[column.title] > 0 ? '_dec' : '_inc'"
                 )
 
         .tr(
