@@ -14,6 +14,7 @@ import UiIconInfo from '~/components/ui-kit/UiIcons/UiIconInfo.vue';
 import UiIconUser from '~/components/ui-kit/UiIcons/UiIconUser.vue';
 import UiIconWarning from '~/components/ui-kit/UiIcons/UiIconWarning.vue';
 import UiIconList from '~/components/ui-kit/UiIcons/UiIconList.vue';
+import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
 
 import sorting from '~/helpers/sorting.ts';
 import filtration from '~/helpers/filtration.ts';
@@ -32,6 +33,7 @@ import filtration from '~/helpers/filtration.ts';
         UiIconUser,
         UiIconWarning,
         UiIconList,
+        UiLink,
     },
 })
 export default class UiGrid extends Vue {
@@ -160,7 +162,16 @@ export default class UiGrid extends Vue {
                 :key="cell.id"
                 :class="getCellViewClass(cell)"
             )
-                .text {{ cell.title }}
+                UiLink(
+                    v-if="cell.to || cell.href"
+                    :to="cell.to"
+                    :href="cell.href"
+                    :target="cell.target || ''"
+                ) {{ cell.title }}
+
+                .text(
+                    v-else
+                ) {{ cell.title }}
 </template>
 
 <style lang="scss" scoped>

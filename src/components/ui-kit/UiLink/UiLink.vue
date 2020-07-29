@@ -5,6 +5,14 @@ import { Component, Prop, Emit } from 'vue-property-decorator';
     @Component
 export default class UiLink extends Vue {
         /**
+         * SPA href
+         * @type {String}
+         */
+        @Prop({
+            default: undefined,
+        }) readonly to!: string;
+
+        /**
          * Нативный атрибут href
          * @type {String}
          */
@@ -84,7 +92,19 @@ export default class UiLink extends Vue {
 </script>
 
 <template lang="pug">
+    router-link.link(
+        v-if="to"
+        :to="to"
+        :class="viewClass"
+        @click.native="click"
+    )
+        .icon(v-if="hasIconSlot")
+            slot(name="icon")
+        .content(v-if="hasDefaultSlot")
+            slot
+
     a.link(
+        v-else
         :href="href"
         :target="target"
         :class="viewClass"

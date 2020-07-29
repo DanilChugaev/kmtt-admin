@@ -1,4 +1,5 @@
 import { configure, storiesOf } from '@storybook/vue';
+import StoryRouter from 'storybook-vue-router';
 
 import UiButton from '~/components/ui-kit/UiButton/stories/UiButton.story.vue';
 import UiIcons from '~/components/ui-kit/UiIcons/stories/UiIcons.story.vue';
@@ -9,6 +10,7 @@ import UiList from '~/components/ui-kit/UiList/stories/UiList.story.vue';
 
 configure(() => {
     storiesOf('UI-kit', module)
+        .addDecorator(StoryRouter())
         .add('UiButton', () => UiButton)
         .add('UiIcons', () => UiIcons)
         .add('UiInput', () => UiInput)
