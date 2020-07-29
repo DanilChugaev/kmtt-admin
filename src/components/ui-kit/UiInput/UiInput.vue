@@ -139,15 +139,6 @@ export default class UiInput extends Vue {
         &._has-icon {
             padding-left: 50px;
         }
-    }
-
-    .input {
-        border: none;
-        outline: none;
-        width: 100%;
-        font-size: 30px;
-        letter-spacing: -0.5px;
-        color: $ui-kit-color-placeholder-text;
 
         ::placeholder {
             color: $ui-kit-color-placeholder-text;
@@ -161,6 +152,16 @@ export default class UiInput extends Vue {
         ::-ms-input-placeholder {
             color: $ui-kit-color-placeholder-text;
         }
+    }
+
+    .input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 30px;
+        letter-spacing: -0.5px;
+        color: $ui-kit-color-placeholder-text;
+        background-color: transparent;
     }
 
     .button {

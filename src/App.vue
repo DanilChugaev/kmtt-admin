@@ -2,7 +2,6 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import temp from './helpers/temp';
 import UiButton from './components/ui-kit/UiButton/UiButton.vue';
 
 @Component({
@@ -21,7 +20,7 @@ export default class App extends Vue {
 
     // Component method
     updateMyProperty($event: any) {
-        this.myDataProperty = temp($event.target.value);
+        this.myDataProperty = $event.target.value;
     }
 }
 </script>

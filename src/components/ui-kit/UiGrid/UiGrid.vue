@@ -16,6 +16,7 @@ import UiIconWarning from '~/components/ui-kit/UiIcons/UiIconWarning.vue';
 import UiIconList from '~/components/ui-kit/UiIcons/UiIconList.vue';
 
 import sorting from '~/helpers/sorting.ts';
+import filtration from '~/helpers/filtration.ts';
 
 @Component({
     components: {
@@ -50,6 +51,14 @@ export default class UiGrid extends Vue {
         required: true,
     }) readonly rows!: Array<any>;
 
+    /**
+     * Строки поиска в таблице
+     * @type {string}
+     */
+    @Prop({
+        default: '',
+    }) readonly searchQuery!: string;
+
     sortKey: string = ''
     sortOrders: object = {}
 
@@ -68,8 +77,13 @@ export default class UiGrid extends Vue {
      */
     get filteredRows(): Array<any> {
         const sortKey = this.sortKey;
+        const searchQuery = this.searchQuery;
         const sortOrder = this.sortOrders[sortKey] || 1;
         let rows = this.rows;
+
+        if (searchQuery) {
+            rows = filtration(rows, searchQuery);
+        }
 
         if (sortKey) {
             rows = sorting(rows, sortKey, sortOrder);

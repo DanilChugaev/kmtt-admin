@@ -3,15 +3,21 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 import UiGrid from '~/components/ui-kit/UiGrid/UiGrid.vue';
+import UiInput from '~/components/ui-kit/UiInput/UiInput.vue';
+import UiIconSearch from '~/components/ui-kit/UiIcons/UiIconSearch.vue';
 
 import { Columns } from '~/interfaces/Grid.ts';
 
 @Component({
     components: {
         UiGrid,
+        UiInput,
+        UiIconSearch,
     },
 })
-export default class SimpleGridCase extends Vue {
+export default class SearchGridCase extends Vue {
+    searchQuery: string = ''
+
     columns: Array<Columns> = [
         { title: 'ID', icon: 'UiIconList' },
         { title: 'Имя', icon: 'UiIconUser' },
@@ -47,14 +53,46 @@ export default class SimpleGridCase extends Vue {
 </script>
 
 <template lang="pug">
-    div
-        p Просто таблица
-        UiGrid(
-            :columns="columns"
-            :rows="rows"
-        )
+    .dark
+        p Таблица с поиском по любому полю
+
+        .grid-container
+            .head
+                .title Список пользователей
+
+                UiInput.search(
+                    v-model="searchQuery"
+                    placeholder="Поиск"
+                )
+                    UiIconSearch(
+                        slot="icon"
+                        :size="28"
+                    )
+            UiGrid(
+                :columns="columns"
+                :rows="rows"
+                :searchQuery="searchQuery"
+            )
 </template>
 
 <style lang="scss" scoped>
     @import '~/components/ui-kit/styles/color.scss';
+
+    .head {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+    }
+
+    .title {
+        font-size: 30px;
+        font-weight: 600;
+        color: $ui-kit-color-main-text;
+        margin-right: auto;
+    }
+
+    .search {
+        width: 410px;
+        margin-left: auto;
+    }
 </style>
