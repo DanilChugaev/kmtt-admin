@@ -82,7 +82,7 @@ export default class Button extends Vue {
             slot
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import '~/components/ui-kit/styles/variables.scss';
     @import '~/components/ui-kit/styles/color.scss';
     @import '~/components/ui-kit/styles/shadow.scss';

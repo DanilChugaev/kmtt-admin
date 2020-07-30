@@ -2,46 +2,29 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import UiButton from './components/ui-kit/UiButton/UiButton.vue';
+import AsideColumn from '~/components/AsideColumn/AsideColumn.vue';
 
 @Component({
     components: {
-        UiButton,
+        AsideColumn,
     },
 })
-export default class App extends Vue {
-    // Data property
-    myDataProperty: string = ''
-
-    // Lifecycle hook
-    mounted() {
-        this.myDataProperty = 'Boop';
-    }
-
-    // Component method
-    updateMyProperty($event: any) {
-        this.myDataProperty = $event.target.value;
-    }
-}
+export default class App extends Vue {}
 </script>
 
 <template lang="pug">
-    div
-        p {{ myDataProperty }}
-        input(
-            :value="myDataProperty"
-            @input="updateMyProperty($event)"
-        )
-        UiButton Жмякни
-        router-link(
-            to="/hello"
-        ) hello
+    .layout
+        //- AsideColumn
 
         router-view
 </template>
 
 <style lang="scss">
     @import './static/fonts.css';
+
+    .layout {
+        display: flex;
+    }
 
     *,
     *::before,

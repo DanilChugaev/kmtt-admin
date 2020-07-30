@@ -61,8 +61,10 @@ export default class SimplePopoverCase extends Vue {
 
 <template lang="pug">
     .popover-example
-        UiPopover
-            .simple-activator(
+        UiPopover(
+            :isFullWidth="true"
+        )
+            .full-width-activator(
                 slot="activator"
             )
                 | Просто какой-то текст с иконкой
@@ -98,7 +100,7 @@ export default class SimplePopoverCase extends Vue {
         font-weight: 500;
     }
 
-    .simple-activator {
+    .full-width-activator {
         display: flex;
         align-items: center;
         color: $ui-kit-color-green;

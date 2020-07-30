@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator';
 
-import UiIconMixin from './_mixin';
+import UiIconMixin from './_mixin.vue';
 
 @Component
 export default class UiIconMenu extends Mixins(UiIconMixin) {}

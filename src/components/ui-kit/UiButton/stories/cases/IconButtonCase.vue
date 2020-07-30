@@ -43,19 +43,11 @@ export default class IconButtonCase extends Vue {}
     }
 
     .green-button {
-        background-color: $ui-kit-color-green;
-
-        &:hover {
-            background-color: $ui-kit-color-green;
-        }
+        background-color: $ui-kit-color-green !important;
     }
 
     .transparent-button {
-        background-color: transparent;
+        background-color: transparent !important;
         color: $ui-kit-color-light-gray;
-
-        &:hover {
-            background-color: transparent;
-        }
     }
 </style>

@@ -168,7 +168,7 @@ export default class UiInput extends Vue {
         position: absolute;
         left: 3px;
         top: -1px;
-        background-color: transparent;
+        background-color: transparent !important;
         color: $ui-kit-color-placeholder-text;
 
         &:hover {

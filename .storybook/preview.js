@@ -9,6 +9,8 @@ import UiLink from '~/components/ui-kit/UiLink/stories/UiLink.story.vue';
 import UiList from '~/components/ui-kit/UiList/stories/UiList.story.vue';
 import UiPopover from '~/components/ui-kit/UiPopover/stories/UiPopover.story.vue';
 
+import AsideColumn from '~/components/AsideColumn/stories/AsideColumn.story.vue';
+
 configure(() => {
     storiesOf('UI-kit', module)
         .addDecorator(StoryRouter())
@@ -19,4 +21,8 @@ configure(() => {
         .add('UiLink', () => UiLink)
         .add('UiList', () => UiList)
         .add('UiPopover', () => UiPopover);
+
+    storiesOf('AsideColumn', module)
+        .addDecorator(StoryRouter())
+        .add('AsideColumn', () => AsideColumn);
 }, module);
