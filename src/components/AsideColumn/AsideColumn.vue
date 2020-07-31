@@ -22,7 +22,7 @@ export default class AsideColumn extends Vue {
      */
     @Prop({
         required: true,
-    }) readonly menuItems!: Array<ListItem>;
+    }) readonly mainMenu!: Array<ListItem>;
 
     /**
      * Список элементов для боковой колонки
@@ -30,43 +30,84 @@ export default class AsideColumn extends Vue {
      */
     @Prop({
         required: true,
-    }) readonly items!: Array<any>;
+    }) readonly sections!: Array<any>;
+
+    /**
+     * Скрывать ли скролл в списке со страницами
+     * @type {boolean}
+     */
+    isVisibleScroll: boolean = true
+
+    /**
+     * Навешиваем классы состояний
+     * @return {Array<string>}
+     */
+    get viewClass(): Array<string> {
+        const result = [];
+
+        if (this.isVisibleScroll) {
+            result.push('_is-visible-scroll');
+        }
+
+        return result;
+    }
+
+    /** Обработка наведения мыши на элемент */
+    mouseOver(): void {
+        this.isVisibleScroll = true;
+    }
+
+    /** Обработка покидания мыши с элемента */
+    mouseLeave(): void {
+        this.isVisibleScroll = false;
+    }
 }
 </script>
 
 <template lang="pug">
     .aside-column
         AsideColumnHead(
-            :items="menuItems"
+            :mainMenu="mainMenu"
         )
 
-        .listing-container
+        .listing-container(
+            :class="viewClass"
+            @mouseover="mouseOver"
+            @mouseleave="mouseLeave"
+        )
             .listing(
-                v-for="list in items"
-                :key="list.id"
+                v-for="section in sections"
+                :key="section.id"
             )
                 h2.title(
-                    v-if="list.title"
-                ) {{ list.title }}
+                    v-if="section.title"
+                ) {{ section.title }}
 
                 UiList.list(
                     v-slot="{ item }"
-                    :items="list.listItems"
+                    :items="section.pages"
                 )
                     UiLink.link(
-                        :to="item.to"
+                        :to="section.to"
                         :hasDashed="false"
                     ) {{ item.name }}
 </template>
 
 <style lang="scss" scoped>
     @import '~/components/ui-kit/styles/color.scss';
+    @import '~/components/ui-kit/styles/typography.scss';
 
     .aside-column {
+        @include ui-kit-typography;
+
+        display: flex;
+        flex-direction: column;
         width: 600px;
+        height: 100%;
         box-sizing: border-box;
         background-color: $ui-kit-color-background;
         border-right: 1px solid $ui-kit-color-aside-border;
+        overflow: hidden;
     }
 
     .link {
@@ -81,6 +122,11 @@ export default class AsideColumn extends Vue {
     .listing-container {
         padding: 33px 0;
         border-top: 2px solid $ui-kit-color-aside-border;
+        overflow: hidden;
+
+        &._is-visible-scroll {
+             overflow-y: auto;
+        }
     }
 
     .listing + .listing {

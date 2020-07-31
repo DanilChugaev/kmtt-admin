@@ -47,7 +47,7 @@ export default class AsideColumn extends Vue {
      */
     @Prop({
         required: true,
-    }) readonly items!: Array<ListItem>;
+    }) readonly mainMenu!: Array<ListItem>;
 
     /**
      * Тут вызываем ранее написанные на фронте функции, которые могут быть вызваны из конфига
@@ -75,7 +75,7 @@ export default class AsideColumn extends Vue {
 
             UiList.menu-list(
                 v-slot="{ item }"
-                :items="items"
+                :items="mainMenu"
             )
                 UiLink.menu-list__link(
                     :href="item.url"

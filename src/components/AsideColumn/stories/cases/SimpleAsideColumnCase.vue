@@ -16,10 +16,10 @@ export default class SimpleAsideColumnCase extends Vue {
      * Элементы списка для боковой колонки
      * @type {Array<any>}
      */
-    items: Array<any> = [
+    sections: Array<any> = [
         {
             title: 'Статистика',
-            listItems: [
+            pages: [
                 {
                     name: 'Публикации',
                     to: '/publications',
@@ -31,7 +31,7 @@ export default class SimpleAsideColumnCase extends Vue {
             ],
         },
         {
-            listItems: [
+            pages: [
                 {
                     name: 'Подписка на еженедельную рассылку',
                     to: '/weekly-newsletter-subscribe',
@@ -40,7 +40,7 @@ export default class SimpleAsideColumnCase extends Vue {
         },
         {
             title: 'Списки данных',
-            listItems: [
+            pages: [
                 {
                     name: 'Доступные города',
                     to: '/available-cities',
@@ -65,7 +65,7 @@ export default class SimpleAsideColumnCase extends Vue {
      * Элементы списка для компонента UiList
      * @type {Array<ListItem>}
      */
-    menuItems: Array<ListItem> = [
+    mainMenu: Array<ListItem> = [
         {
             name: 'Основные настройки',
             method: 'mainSettings',
@@ -96,8 +96,8 @@ export default class SimpleAsideColumnCase extends Vue {
 
 <template lang="pug">
     AsideColumn(
-        :items="items"
-        :menuItems="menuItems"
+        :sections="sections"
+        :mainMenu="mainMenu"
     )
 </template>
 
