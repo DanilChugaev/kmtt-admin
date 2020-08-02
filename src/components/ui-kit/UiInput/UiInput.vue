@@ -4,6 +4,14 @@ import { Component, Prop, Emit } from 'vue-property-decorator';
 
 import UiButton from '~/components/ui-kit/UiButton/UiButton.vue';
 
+import getDynamicProp from '~/helpers/getDynamicProp';
+
+interface DynamicPropsInput {
+    value?: string | number,
+    placeholder?: string,
+    type?: string,
+}
+
 @Component({
     components: {
         UiButton,
@@ -33,6 +41,14 @@ export default class UiInput extends Vue {
     @Prop({
         default: 'text',
     }) readonly type!: string;
+
+    /**
+     * Динамические пропсы
+     * @type {DynamicPropsInput}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly dynamicProps!: DynamicPropsInput;
 
     /**
      * Имеет ли кнопка содержимое в слоте icon
@@ -68,6 +84,7 @@ export default class UiInput extends Vue {
      */
     @Emit('keyupEnter')
     handleKeyupEnter(event: any) {
+        this.$emit('dynamicEvent', 'keyupEnter', event);
         return event;
     }
 
@@ -78,6 +95,10 @@ export default class UiInput extends Vue {
      */
     @Emit('clickIcon')
     handleClickIcon(event: any) {
+        this.$emit('dynamicEvent', {
+            eventName: 'clickIcon',
+            value: event,
+        });
         return event;
     }
 
@@ -89,11 +110,21 @@ export default class UiInput extends Vue {
     @Emit('input')
     handleInput(value: any): string {
         if (value && value.target) {
+            this.$emit('dynamicEvent', {
+                eventName: 'input',
+                value: value.target.value,
+            });
             return value.target.value;
         } else {
+            this.$emit('dynamicEvent', {
+                eventName: 'input',
+                value: '',
+            });
             return '';
         }
     }
+
+    getDynamicProp: any = getDynamicProp
 }
 </script>
 
@@ -111,9 +142,9 @@ export default class UiInput extends Vue {
             )
 
         input.input(
-            :value="value"
-            :type="type"
-            :placeholder="placeholder"
+            :value="getDynamicProp(dynamicProps, value, 'value')"
+            :type="getDynamicProp(dynamicProps, type, 'type')"
+            :placeholder="getDynamicProp(dynamicProps, placeholder, 'placeholder')"
             @input="handleInput"
             @keyup.enter="handleKeyupEnter"
             @keyup.esc="handleKeyupEsc"

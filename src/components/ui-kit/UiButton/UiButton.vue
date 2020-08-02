@@ -3,7 +3,7 @@ import Vue from 'vue';
 import { Component, Prop, Emit } from 'vue-property-decorator';
 
 @Component
-export default class Button extends Vue {
+export default class UiButton extends Vue {
     /** Нативный атрибут type */
     @Prop({
         default: 'button',

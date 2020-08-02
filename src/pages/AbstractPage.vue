@@ -6,6 +6,8 @@ import { Component } from 'vue-property-decorator';
 @Component({
     components: {
         UiLink: () => import('~/components/ui-kit/UiLink/UiLink.vue'),
+        UiButton: () => import('~/components/ui-kit/UiButton/UiButton.vue'),
+        UiInput: () => import('~/components/ui-kit/UiInput/UiInput.vue'),
     },
     computed: {
         ...mapState([
@@ -17,7 +19,13 @@ import { Component } from 'vue-property-decorator';
         ]),
     },
 })
-export default class AbstractPage extends Vue {}
+export default class AbstractPage extends Vue {
+    //@ts-ignore
+    dynamicEvent(event: any, item: any) {
+        console.log(event);
+        console.log(item);
+    }
+}
 </script>
 
 <template lang="pug">
@@ -28,17 +36,17 @@ export default class AbstractPage extends Vue {}
         .components-container(
             v-if="getComponentsForPage.length"
         )
-            keep-alive
-                component.component(
-                    v-for="item in getComponentsForPage"
-                    :key="item.id"
-                    :is="item.name"
-                    :dynamicProps="item.props"
-                    :style="item.style"
-                )
-                    span(
-                        v-if="item.text"
-                    ) {{ item.text }}
+            component.component(
+                v-for="item in getComponentsForPage"
+                :key="item.id"
+                :is="item.name"
+                :style="item.style"
+                :dynamicProps="item.props"
+                @dynamicEvent="dynamicEvent($event, item)"
+            )
+                span(
+                    v-if="item.text"
+                ) {{ item.text }}
 </template>
 
 <style lang="scss">

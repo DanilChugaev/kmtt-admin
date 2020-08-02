@@ -4,11 +4,13 @@ import { Component } from 'vue-property-decorator';
 
 import SimpleInputCase from './cases/SimpleInputCase.vue';
 import IconInputCase from './cases/IconInputCase.vue';
+import DynamicPropsInputCase from './cases/DynamicPropsInputCase.vue';
 
 @Component({
     components: {
         SimpleInputCase,
         IconInputCase,
+        DynamicPropsInputCase,
     },
 })
 export default class UiInputStories extends Vue {}
@@ -18,6 +20,7 @@ export default class UiInputStories extends Vue {}
     div
         SimpleInputCase.mb-20
         IconInputCase.mb-20
+        DynamicPropsInputCase.mb-20
 </template>
 
 <style lang="scss">
