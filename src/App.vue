@@ -25,6 +25,7 @@ import RouteParams from "~/interfaces/RouteParams.ts";
         ...mapMutations([
             'setSectionTitle',
             'setMainTitle',
+            'setPageId',
         ]),
     },
 })
@@ -35,10 +36,13 @@ export default class App extends Vue {
 
     @Watch('$route', { immediate: true, deep: true })
     onRouteChanged({ query }: RouteParams) {
-        const { section, name } = query;
+        const { section, name, id } = query;
 
-        (this as any).setSectionTitle(section && section !== 'undefined' ? section : '');
-        (this as any).setMainTitle(name && name !== 'undefined' ? name : '');
+        if (id) {
+            (this as any).setPageId(id);
+            (this as any).setSectionTitle(section && section !== 'undefined' ? section : '');
+            (this as any).setMainTitle(name && name !== 'undefined' ? name : '');
+        }
     }
 }
 </script>

@@ -2,99 +2,119 @@
 import Vue from 'vue';
 import { Component, Prop, Emit } from 'vue-property-decorator';
 
-    @Component
+import getDynamicProp from '~/helpers/getDynamicProp';
+
+interface DynamicPropsLink {
+    to?: string,
+    href?: string,
+    target?: string,
+    rel?: string,
+    hasDashed?: boolean,
+}
+
+@Component
 export default class UiLink extends Vue {
-        /**
-         * SPA href
-         * @type {String}
-         */
-        @Prop({
-            default: undefined,
-        }) readonly to!: string;
+    /**
+     * SPA href
+     * @type {String}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly to!: string;
 
-        /**
-         * Нативный атрибут href
-         * @type {String}
-         */
-        @Prop({
-            default: undefined,
-        }) readonly href!: string;
+    /**
+     * Нативный атрибут href
+     * @type {String}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly href!: string;
 
-        /**
-         * Нативный атрибут target
-         * @type {String}
-         */
-        @Prop({
-            default: '',
-        }) readonly target!: string;
+    /**
+     * Нативный атрибут target
+     * @type {String}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly target!: string;
 
-        /**
-         * Нативный атрибут rel
-         * @type {String}
-         */
-        @Prop({
-            default: '',
-        }) readonly rel!: string;
+    /**
+     * Нативный атрибут rel
+     * @type {String}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly rel!: string;
 
-        /**
-         * Есть ли подчеркивание у ссылки
-         * @type {boolean}
-         */
-        @Prop({
-            default: true,
-        }) readonly hasDashed!: boolean;
+    /**
+     * Есть ли подчеркивание у ссылки
+     * @type {boolean}
+     */
+    @Prop({
+        default: true,
+    }) readonly hasDashed!: boolean;
 
-        /**
-         * Навешиваем классы состояний
-         * @return {Array<string>}
-         */
-        get viewClass(): Array<string> {
-            const result = [];
+    /**
+     * Динамические пропсы
+     * @type {DynamicPropsLink}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly dynamicProps!: DynamicPropsLink;
 
-            if (this.hasDashed) {
-                result.push('_had-dashed');
-            }
+    /**
+     * Навешиваем классы состояний
+     * @return {Array<string>}
+     */
+    get viewClass(): Array<string> {
+        const result = [];
 
-            /** Если есть слот с иконкой, то на ссылку навешиваем класс с другими отступами */
-            if (this.hasIconSlot && this.hasDefaultSlot) {
-                result.push('_text-with-icon');
-            }
-
-            return result;
+        if (this.getDynamicProp(this.dynamicProps, this.hasDashed, 'hasDashed')) {
+            result.push('_had-dashed');
         }
 
-        /**
-         * Имеет ли кнопка содержимое в слоте icon
-         * @return {boolean}
-         */
-        get hasIconSlot(): boolean {
-            return Boolean(this.$slots.icon);
+        /** Если есть слот с иконкой, то на ссылку навешиваем класс с другими отступами */
+        if (this.hasIconSlot && this.hasDefaultSlot) {
+            result.push('_text-with-icon');
         }
 
-        /**
-         * Имеет ли кнопка содержимое в дефолтном слоте
-         * @return {boolean}
-         */
-        get hasDefaultSlot(): boolean {
-            return Boolean(this.$slots.default);
-        }
+        return result;
+    }
 
-        /**
-         * Обработчик нажатия на ссылку
-         * @param {any} event
-         * @return {any}
-         */
-        @Emit()
-        click(event: any) {
-            return event;
-        }
+    /**
+     * Имеет ли кнопка содержимое в слоте icon
+     * @return {boolean}
+     */
+    get hasIconSlot(): boolean {
+        return Boolean(this.$slots.icon);
+    }
+
+    /**
+     * Имеет ли кнопка содержимое в дефолтном слоте
+     * @return {boolean}
+     */
+    get hasDefaultSlot(): boolean {
+        return Boolean(this.$slots.default);
+    }
+
+    /**
+     * Обработчик нажатия на ссылку
+     * @param {any} event
+     * @return {any}
+     */
+    @Emit()
+    click(event: any) {
+        return event;
+    }
+
+    getDynamicProp: any = getDynamicProp
 }
 </script>
 
 <template lang="pug">
     router-link.link(
-        v-if="to"
-        :to="to"
+        v-if="getDynamicProp(dynamicProps, to, 'to')"
+        :to="getDynamicProp(dynamicProps, to, 'to')"
         :class="viewClass"
         @click.native="click"
     )
@@ -105,8 +125,8 @@ export default class UiLink extends Vue {
 
     a.link(
         v-else
-        :href="href"
-        :target="target"
+        :href="getDynamicProp(dynamicProps, href, 'href')"
+        :target="getDynamicProp(dynamicProps, target, 'target')"
         :class="viewClass"
         @click="click"
     )

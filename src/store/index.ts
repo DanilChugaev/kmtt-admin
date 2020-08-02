@@ -6,11 +6,13 @@ Vue.use(Vuex);
 import ListItem from "~/interfaces/ListItem.ts";
 import Page from "~/interfaces/Page.ts";
 import Section from "~/interfaces/Section.ts";
+import UiComponent from '~/interfaces/UiComponent.ts';
 
 interface EventStoreState {
     config: any;
     sectionTitle: string;
     mainTitle: string;
+    pageId: string;
 }
 
 // @ts-ignore
@@ -35,6 +37,12 @@ const store = new Vuex.Store({
          * @type {string}
          */
         mainTitle: '',
+
+        /**
+         * ID страницы
+         * @type {string}
+         */
+        pageId: '',
     },
 
     getters: {
@@ -57,6 +65,28 @@ const store = new Vuex.Store({
                 title,
                 pages: pages.map(({ name, to, id } : Page) => ({ name, to, id }))
             }));
+        },
+
+        /**
+         * Возвращает список компонентов для выбранной страницы
+         * @param {EventStoreState} state
+         * @return {Array<UiComponent> | undefined}
+         */
+        getComponentsForPage({ config, pageId }: EventStoreState): Array<UiComponent> | undefined {
+            let components;
+
+            config.sections.some((section : Section) => {
+                const [ result ] = section.pages.filter((page: Page) => {
+                    return page.id === pageId;
+                })
+
+                if (result) {
+                    components = result.components;
+                    return true;
+                }
+            });
+
+            return components;
         },
     },
 
@@ -86,6 +116,15 @@ const store = new Vuex.Store({
          */
         setMainTitle(state: EventStoreState, title: string) {
             state.mainTitle = title;
+        },
+
+        /**
+         * Устанавливаем ID страницы
+         * @param {EventStoreState} state
+         * @param {string} id
+         */
+        setPageId(state: EventStoreState, id: string) {
+            state.pageId = id;
         },
     },
 

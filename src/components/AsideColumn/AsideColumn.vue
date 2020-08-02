@@ -115,7 +115,8 @@ export default class AsideColumn extends Vue {
 
         display: flex;
         flex-direction: column;
-        width: 600px;
+        width: 100%;
+        max-width: 600px;
         height: 100%;
         box-sizing: border-box;
         background-color: $ui-kit-color-background;
