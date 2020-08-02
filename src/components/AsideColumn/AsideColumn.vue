@@ -88,7 +88,7 @@ export default class AsideColumn extends Vue {
                     :items="section.pages"
                 )
                     UiLink.link(
-                        :to="section.to"
+                        :to="item.to"
                         :hasDashed="false"
                     ) {{ item.name }}
 </template>
@@ -117,6 +117,10 @@ export default class AsideColumn extends Vue {
         color: $ui-kit-color-main-text;
         font-weight: 400;
         line-height: 1.45;
+
+        &.router-link-active {
+            background-color: $ui-kit-color-background-hover;
+        }
     }
 
     .listing-container {

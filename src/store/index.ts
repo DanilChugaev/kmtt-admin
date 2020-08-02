@@ -32,11 +32,6 @@ const store = new Vuex.Store({
     },
 
     getters: {
-        /** Удалить */
-        getConfig({ config }: EventStoreState): Object {
-            return config;
-        },
-
         /**
          * Возвращает конфиг для главного меню
          * @param {EventStoreState} state

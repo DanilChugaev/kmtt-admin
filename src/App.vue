@@ -44,6 +44,7 @@ export default class App extends Vue {
     .layout {
         display: flex;
         align-items: flex-start;
+        background-color: $ui-kit-color-background;
     }
 
     html,
