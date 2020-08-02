@@ -1,0 +1,19 @@
+.page {
+    padding: 66px 80px;
+}
+
+.title {
+    @include ui-kit-typography;
+    color: $ui-kit-color-main-text;
+
+    &._section {
+        font-size: 30px;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    &._main {
+        font-size: 45px;
+        letter-spacing: -0.4px;
+    }
+}

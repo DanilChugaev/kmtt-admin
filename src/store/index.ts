@@ -4,19 +4,13 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import ListItem from "~/interfaces/ListItem.ts";
+import Page from "~/interfaces/Page.ts";
+import Section from "~/interfaces/Section.ts";
 
 interface EventStoreState {
     config: any;
-}
-
-interface Page {
-    name: string,
-    to: string,
-}
-
-interface Section {
-    title: string,
-    pages: Array<Page>,
+    sectionTitle: string;
+    mainTitle: string;
 }
 
 // @ts-ignore
@@ -29,6 +23,18 @@ const store = new Vuex.Store({
          * @type {Object}
          */
         config: {},
+
+        /**
+         * Заголовок секции на странице
+         * @type {string}
+         */
+        sectionTitle: '',
+
+        /**
+         * Главный заголовок на странице
+         * @type {string}
+         */
+        mainTitle: '',
     },
 
     getters: {
@@ -49,7 +55,7 @@ const store = new Vuex.Store({
         getSections({ config }: EventStoreState): Array<Section> {
             return config.sections.map(({ title, pages } : Section) => ({
                 title,
-                pages: pages.map(({ name, to } : Page) => ({ name, to }))
+                pages: pages.map(({ name, to, id } : Page) => ({ name, to, id }))
             }));
         },
     },
@@ -62,6 +68,24 @@ const store = new Vuex.Store({
          */
         addConfig(state: EventStoreState, config: Object) {
             state.config = config;
+        },
+
+        /**
+         * Устанавливаем заголовок секции на странице
+         * @param {EventStoreState} state
+         * @param {string} title
+         */
+        setSectionTitle(state: EventStoreState, title: string) {
+            state.sectionTitle = title;
+        },
+
+        /**
+         * Устанавливаем главный заголовок на странице
+         * @param {EventStoreState} state
+         * @param {string} title
+         */
+        setMainTitle(state: EventStoreState, title: string) {
+            state.mainTitle = title;
         },
     },
 
@@ -76,7 +100,7 @@ const store = new Vuex.Store({
             // const config = await axios.get(params);
 
             commit('addConfig', config)
-        }
+        },
     },
 });
 

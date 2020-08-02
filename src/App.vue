@@ -1,9 +1,11 @@
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters, mapActions } from 'vuex';
-import { Component } from 'vue-property-decorator';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
+import { Component, Watch } from 'vue-property-decorator';
 
 import AsideColumn from '~/components/AsideColumn/AsideColumn.vue';
+
+import RouteParams from "~/interfaces/RouteParams.ts";
 
 @Component({
     components: {
@@ -17,12 +19,26 @@ import AsideColumn from '~/components/AsideColumn/AsideColumn.vue';
         ]),
     },
     methods: {
-        ...mapActions(['getProjectConfig']),
+        ...mapActions([
+            'getProjectConfig',
+        ]),
+        ...mapMutations([
+            'setSectionTitle',
+            'setMainTitle',
+        ]),
     },
 })
 export default class App extends Vue {
     async created() {
         await (this as any).getProjectConfig();
+    }
+
+    @Watch('$route', { immediate: true, deep: true })
+    onRouteChanged({ query }: RouteParams) {
+        const { section, name } = query;
+
+        (this as any).setSectionTitle(section && section !== 'undefined' ? section : '');
+        (this as any).setMainTitle(name && name !== 'undefined' ? name : '');
     }
 }
 </script>

@@ -2,12 +2,12 @@ const firstSection = {
     title: 'Статистика',
     pages: [
         {
+            id: 'publications',
             name: 'Публикации',
-            to: '/publications',
         },
         {
+            id: 'messenger',
             name: 'Мессенджер',
-            to: '/messenger',
         },
     ],
 };
@@ -15,8 +15,8 @@ const firstSection = {
 const secondSection = {
     pages: [
         {
+            id: 'weekly-newsletter-subscribe',
             name: 'Подписка на еженедельную рассылку',
-            to: '/weekly-newsletter-subscribe',
         },
     ],
 };
@@ -25,20 +25,20 @@ const thirdSection = {
     title: 'Списки данных',
     pages: [
         {
+            id: 'available-cities',
             name: 'Доступные города',
-            to: '/available-cities',
         },
         {
+            id: 'blocked-users',
             name: 'Заблокированные пользователи',
-            to: '/blocked-users',
         },
         {
+            id: 'blacklist-links',
             name: 'Черный список ссылок',
-            to: '/blacklist-links',
         },
         {
+            id: 'user-management',
             name: 'Управление пользователями',
-            to: '/user-management',
         },
     ],
 };
@@ -48,20 +48,20 @@ const fourthSection = {
     title: 'Дополнительно',
     pages: [
         {
+            id: 'first',
             name: 'Первая страница',
-            to: '/first',
         },
         {
+            id: 'second',
             name: 'Вторая страница',
-            to: '/second',
         },
         {
+            id: 'third',
             name: 'Третья страница',
-            to: '/third',
         },
         {
+            id: 'fourth',
             name: 'Четвертая страница',
-            to: '/fourth',
         },
     ],
 };

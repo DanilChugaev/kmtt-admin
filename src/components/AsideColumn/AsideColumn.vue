@@ -6,7 +6,9 @@ import UiList from '~/components/ui-kit/UiList/UiList.vue';
 import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
 import AsideColumnHead from "~/components/AsideColumn/AsideColumnHead.vue";
 
-import ListItem from "~/interfaces/ListItem";
+import ListItem from "~/interfaces/ListItem.ts";
+import Page from "~/interfaces/Page.ts";
+import Section from "~/interfaces/Section.ts";
 
 @Component({
     components: {
@@ -61,6 +63,16 @@ export default class AsideColumn extends Vue {
     mouseLeave(): void {
         this.isVisibleScroll = false;
     }
+
+    /**
+     * Возвращает урл маршрута с гет параметрами
+     * @param {Section} section
+     * @param {Page} page
+     * @return {string}
+     */
+    generateRouteParams(section: Section, page: Page): any {
+        return `${page.to || '/abstract-page/'}?id=${page.id}&section=${section.title}&name=${page.name}`;
+    }
 }
 </script>
 
@@ -78,6 +90,7 @@ export default class AsideColumn extends Vue {
             .listing(
                 v-for="section in sections"
                 :key="section.id"
+                :class="{ '_has-title': Boolean(section.title) }"
             )
                 h2.title(
                     v-if="section.title"
@@ -88,7 +101,7 @@ export default class AsideColumn extends Vue {
                     :items="section.pages"
                 )
                     UiLink.link(
-                        :to="item.to"
+                        :to="generateRouteParams(section, item)"
                         :hasDashed="false"
                     ) {{ item.name }}
 </template>
@@ -118,7 +131,7 @@ export default class AsideColumn extends Vue {
         font-weight: 400;
         line-height: 1.45;
 
-        &.router-link-active {
+        &.router-link-exact-active {
             background-color: $ui-kit-color-background-hover;
         }
     }
@@ -134,7 +147,11 @@ export default class AsideColumn extends Vue {
     }
 
     .listing + .listing {
-        margin-top: 48px;
+        margin-top: 40px;
+
+        &._has-title {
+            margin-top: 48px;
+        }
     }
 
     .list {
