@@ -8,6 +8,7 @@ import { Component } from 'vue-property-decorator';
         UiLink: () => import('~/components/ui-kit/UiLink/UiLink.vue'),
         UiButton: () => import('~/components/ui-kit/UiButton/UiButton.vue'),
         UiInput: () => import('~/components/ui-kit/UiInput/UiInput.vue'),
+        GridContainer: () => import('~/containers/GridContainer.vue'),
     },
     computed: {
         ...mapState([
@@ -20,7 +21,11 @@ import { Component } from 'vue-property-decorator';
     },
 })
 export default class AbstractPage extends Vue {
-    //@ts-ignore
+    /**
+     * На соответствующий ивент компонента реагируем заранее определенным действием
+     * @param {any} event
+     * @param {any} item
+     */
     dynamicEvent(event: any, item: any) {
         console.log(event);
         console.log(item);
@@ -60,6 +65,6 @@ export default class AbstractPage extends Vue {
     }
 
     .component + .component {
-        margin-top: 20px;
+        margin-top: 42px;
     }
 </style>

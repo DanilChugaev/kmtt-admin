@@ -20,8 +20,8 @@ export default class DynamicPropsInputCase extends Vue {
 
     /**
      * На соответствующий ивент компонента реагируем заранее определенным действием
-     *
-     * @type {any}
+     * @param {any} event
+     * @param {any} item
      */
     dynamicEvent(event: any, item: any) {
         console.log(`eventName - ${event.eventName}, value - ${event.value}, item - ${item}`);

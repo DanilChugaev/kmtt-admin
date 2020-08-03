@@ -55,6 +55,7 @@ export default class UiGridActionContainer extends Vue {
      */
     callMethod(item: ListItem): void {
         if (item.method) {
+            //@ts-ignore
             console.log(`Вызываем метод ${item.method} c параметрами: ${Object.keys(item.params)}`);
         }
     }
@@ -64,7 +65,7 @@ export default class UiGridActionContainer extends Vue {
 <template lang="pug">
     .action-container
         UiPopover
-            component.action(
+            component.action.activator(
                 slot="activator"
                 :is="cell.action.icon"
                 :size="48"

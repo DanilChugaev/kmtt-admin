@@ -2,52 +2,37 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
-import UiIconSearch from '~/components/ui-kit/UiIcons/UiIconSearch.vue';
-import UiIconSettings from '~/components/ui-kit/UiIcons/UiIconSettings.vue';
-import UiIconChevronDown from '~/components/ui-kit/UiIcons/UiIconChevronDown.vue';
-import UiIconAtSign from '~/components/ui-kit/UiIcons/UiIconAtSign.vue';
-import UiIconAction from '~/components/ui-kit/UiIcons/UiIconAction.vue';
-import UiIconMenu from '~/components/ui-kit/UiIcons/UiIconMenu.vue';
-import UiIconDisc from '~/components/ui-kit/UiIcons/UiIconDisc.vue';
-import UiIconCheck from '~/components/ui-kit/UiIcons/UiIconCheck.vue';
-import UiIconInfo from '~/components/ui-kit/UiIcons/UiIconInfo.vue';
-import UiIconUser from '~/components/ui-kit/UiIcons/UiIconUser.vue';
-import UiIconWarning from '~/components/ui-kit/UiIcons/UiIconWarning.vue';
-import UiIconList from '~/components/ui-kit/UiIcons/UiIconList.vue';
-
-import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
-
-import UiGridActionContainer from './UiGridActionContainer.vue';
-
 import sorting from '~/helpers/sorting.ts';
 import filtration from '~/helpers/filtration.ts';
 
+import { Columns } from '~/interfaces/Grid.ts';
+
 @Component({
     components: {
-        UiIconSearch,
-        UiIconSettings,
-        UiIconChevronDown,
-        UiIconAtSign,
-        UiIconAction,
-        UiIconMenu,
-        UiIconDisc,
-        UiIconCheck,
-        UiIconInfo,
-        UiIconUser,
-        UiIconWarning,
-        UiIconList,
-        UiLink,
-        UiGridActionContainer,
+        UiIconSearch: () => import('~/components/ui-kit/UiIcons/UiIconSearch.vue'),
+        UiIconSettings: () => import('~/components/ui-kit/UiIcons/UiIconSettings.vue'),
+        UiIconChevronDown: () => import('~/components/ui-kit/UiIcons/UiIconChevronDown.vue'),
+        UiIconAtSign: () => import('~/components/ui-kit/UiIcons/UiIconAtSign.vue'),
+        UiIconAction: () => import('~/components/ui-kit/UiIcons/UiIconAction.vue'),
+        UiIconMenu: () => import('~/components/ui-kit/UiIcons/UiIconMenu.vue'),
+        UiIconDisc: () => import('~/components/ui-kit/UiIcons/UiIconDisc.vue'),
+        UiIconCheck: () => import('~/components/ui-kit/UiIcons/UiIconCheck.vue'),
+        UiIconInfo: () => import('~/components/ui-kit/UiIcons/UiIconInfo.vue'),
+        UiIconUser: () => import('~/components/ui-kit/UiIcons/UiIconUser.vue'),
+        UiIconWarning: () => import('~/components/ui-kit/UiIcons/UiIconWarning.vue'),
+        UiIconList: () => import('~/components/ui-kit/UiIcons/UiIconList.vue'),
+        UiLink: () => import('~/components/ui-kit/UiLink/UiLink.vue'),
+        UiGridActionContainer: () => import('./UiGridActionContainer.vue'),
     },
 })
 export default class UiGrid extends Vue {
     /**
      * Названия колонок в шапке таблице
-     * @type {Array<any>}
+     * @type {Array<Columns>}
      */
     @Prop({
         required: true,
-    }) readonly columns!: Array<any>;
+    }) readonly columns!: Array<Columns>;
 
     /**
      * Строки таблицы
@@ -65,12 +50,22 @@ export default class UiGrid extends Vue {
         default: '',
     }) readonly searchQuery!: string;
 
+    /**
+     * Ключ столбца, по которому происходит сортировка в таблице
+     * @type {string}
+     */
     sortKey: string = ''
+
+    /**
+     * Значений ключей сортировки
+     * @type {object}
+     */
     sortOrders: object = {}
 
     created() {
         const sortOrders = {};
         this.columns.forEach((column) => {
+            //@ts-ignore
             sortOrders[column.title] = 1;
         });
 
@@ -84,6 +79,7 @@ export default class UiGrid extends Vue {
     get filteredRows(): Array<any> {
         const sortKey = this.sortKey;
         const searchQuery = this.searchQuery;
+        //@ts-ignore
         const sortOrder = this.sortOrders[sortKey] || 1;
         let rows = this.rows;
 
@@ -129,6 +125,7 @@ export default class UiGrid extends Vue {
      */
     sortByKey(key: string) {
         this.sortKey = key;
+        //@ts-ignore
         this.sortOrders[key] = this.sortOrders[key] * -1;
     }
 }
@@ -203,6 +200,8 @@ export default class UiGrid extends Vue {
 
     .td,
     .th {
+        @include ui-kit-typography;
+
         display: table-cell;
         padding: 19px 20px;
         vertical-align: middle;

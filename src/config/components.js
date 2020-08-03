@@ -53,7 +53,30 @@ export const blockedUsersComponents = [];
 
 export const blacklistLinksComponents = [];
 
-export const userManagementComponents = [];
+export const userManagementComponents = [
+    {
+        name: 'GridContainer',
+        props: {
+            params: {}, // тут указываем параметры, по которым хотим получить данные для таблицы
+            columns: [
+                { title: 'ID', icon: 'UiIconList' },
+                { title: 'Имя', icon: 'UiIconUser' },
+                { title: 'Email', icon: 'UiIconAtSign' },
+                { title: 'Статус', icon: 'UiIconInfo' },
+                { title: 'Действия', icon: 'UiIconDisc' },
+            ],
+            title: 'Список пользователей',
+        },
+        style: {},
+    },
+    {
+        name: 'UiButton',
+        text: 'Добавить пользователя',
+        style: {
+            alignSelf: 'flex-start', // { 'flex-start' | 'center' | 'flex-end' }
+        },
+    },
+];
 
 export const firstComponents = [];
 

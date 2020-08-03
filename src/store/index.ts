@@ -8,6 +8,8 @@ import Page from "~/interfaces/Page.ts";
 import Section from "~/interfaces/Section.ts";
 import UiComponent from '~/interfaces/UiComponent.ts';
 
+import GridStore from "~/store/GridStore";
+
 interface EventStoreState {
     config: any;
     sectionTitle: string;
@@ -140,6 +142,10 @@ const store = new Vuex.Store({
 
             commit('addConfig', config)
         },
+    },
+
+    modules: {
+        Grid: GridStore,
     },
 });
 
