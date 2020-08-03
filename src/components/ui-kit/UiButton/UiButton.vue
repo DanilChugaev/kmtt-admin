@@ -151,4 +151,11 @@ export default class UiButton extends Vue {
             }
         }
     }
+
+    @media (max-width: 1679px) {
+        .button {
+            font-size: 20px;
+            padding: 17px 25px;
+        }
+    }
 </style>

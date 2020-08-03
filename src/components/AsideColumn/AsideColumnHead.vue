@@ -96,6 +96,7 @@ export default class AsideColumn extends Vue {
 
     .head-container {
         padding: 30px 40px;
+        background-color: $ui-kit-color-background;
     }
 
     .head {
@@ -133,6 +134,26 @@ export default class AsideColumn extends Vue {
             padding: 18px 40px;
             color: $ui-kit-color-main-text;
             font-weight: 500;
+        }
+    }
+
+    @media (max-width: 1679px) {
+        .head-container {
+            padding: 16px 40px;
+        }
+
+        .head {
+            &__icon {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .menu-list {
+            &__link {
+                font-size: 20px;
+                padding: 15px 40px;
+            }
         }
     }
 </style>

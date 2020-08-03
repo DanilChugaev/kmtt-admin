@@ -93,4 +93,13 @@ export default class GridContainer extends Vue {
         width: 410px;
         margin-left: auto;
     }
+
+    @media (max-width: 1679px) {
+        .head {
+            padding: 10px 0;
+        }
+        .title {
+            font-size: 20px;
+        }
+    }
 </style>

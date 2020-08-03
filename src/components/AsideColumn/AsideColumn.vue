@@ -2,9 +2,11 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
+import UiButton from '~/components/ui-kit/UiButton/UiButton.vue';
 import UiList from '~/components/ui-kit/UiList/UiList.vue';
 import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
 import UiIconLayers from '~/components/ui-kit/UiIcons/UiIconLayers.vue';
+import UiIconArrowLeft from '~/components/ui-kit/UiIcons/UiIconArrowLeft.vue';
 import AsideColumnHead from "~/components/AsideColumn/AsideColumnHead.vue";
 
 import ListItem from "~/interfaces/ListItem.ts";
@@ -14,9 +16,11 @@ import Section from "~/interfaces/Section.ts";
 @Component({
     components: {
         AsideColumnHead,
+        UiButton,
         UiList,
         UiLink,
         UiIconLayers,
+        UiIconArrowLeft,
     },
 })
 export default class AsideColumn extends Vue {
@@ -41,6 +45,12 @@ export default class AsideColumn extends Vue {
      * @type {boolean}
      */
     isVisibleScroll: boolean = true
+
+    /**
+     * Видна ли боковая колонка
+     * @type {boolean}
+     */
+    isVisible: boolean = false
 
     /**
      * Навешиваем классы состояний
@@ -79,7 +89,9 @@ export default class AsideColumn extends Vue {
 </script>
 
 <template lang="pug">
-    .aside-column
+    .aside-column(
+        :class="{ '_is-visible': isVisible }"
+    )
         AsideColumnHead(
             :mainMenu="mainMenu"
         )
@@ -117,6 +129,15 @@ export default class AsideColumn extends Vue {
                     slot="icon"
                 )
                 | Библиотека компонентов
+
+        UiButton.close-button(
+            :class="{ '_is-visible': isVisible }"
+            @click="isVisible = !isVisible"
+        )
+            UiIconArrowLeft.icon(
+                slot="icon"
+                :size="30"
+            )
 </template>
 
 <style lang="scss" scoped>
@@ -134,7 +155,6 @@ export default class AsideColumn extends Vue {
         box-sizing: border-box;
         background-color: $ui-kit-color-background;
         border-right: 1px solid $ui-kit-color-aside-border;
-        overflow: hidden;
     }
 
     .link {
@@ -191,5 +211,63 @@ export default class AsideColumn extends Vue {
         font-size: 26px;
         letter-spacing: 2.2px;
         text-transform: uppercase;
+    }
+
+    .close-button {
+        display: none;
+        position: absolute;
+        padding: 5px !important;
+        top: 26px;
+        right: -35px;
+        color: $ui-kit-color-main-text;
+        z-index: -1;
+        background-color: transparent !important;
+        border: 1px solid $ui-kit-color-main-text;
+
+        &:hover {
+            background-color: transparent !important;
+        }
+
+        .icon {
+            transform: rotate(180deg);
+        }
+
+        &._is-visible {
+            .icon {
+                transform: rotate(0);
+            }
+        }
+    }
+
+    @media (max-width: 1679px) {
+        .aside-column {
+            max-width: 400px;
+        }
+
+        .link {
+            font-size: 22px;
+            padding: 7px 40px;
+        }
+
+        .title {
+            font-size: 18px;
+            padding: 7px 40px;
+        }
+    }
+
+    @media (max-width: 1365px) {
+        .aside-column {
+            position: absolute;
+            z-index: 10;
+            transform: translateX(-100%);
+
+            &._is-visible {
+                transform: translateX(0);
+            }
+        }
+
+        .close-button {
+            display: block;
+        }
     }
 </style>

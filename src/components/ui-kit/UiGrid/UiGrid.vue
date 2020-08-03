@@ -132,52 +132,53 @@ export default class UiGrid extends Vue {
 </script>
 
 <template lang="pug">
-    .table
-        .tr
-            .th(
-                v-for="column in columns"
-                :key="column.id"
-                :class="getCellViewClass(column)"
-                @click="sortByKey(column.title)"
+    .table-container
+        .table
+            .tr
+                .th(
+                    v-for="column in columns"
+                    :key="column.id"
+                    :class="getCellViewClass(column)"
+                    @click="sortByKey(column.title)"
+                )
+                    component.icon(
+                        v-if="column.icon"
+                        :is="column.icon"
+                        :size="34"
+                    )
+
+                    .text {{ column.title }}
+
+                    UiIconChevronDown.sorting(
+                        slot="icon"
+                        :size="28"
+                        :class="sortOrders[column.title] > 0 ? '_dec' : '_inc'"
+                    )
+
+            .tr(
+                v-for="row in filteredRows"
+                :key="row.id"
             )
-                component.icon(
-                    v-if="column.icon"
-                    :is="column.icon"
-                    :size="34"
+                .td(
+                    v-for="cell in row"
+                    :key="cell.id"
+                    :class="getCellViewClass(cell)"
                 )
+                    UiGridActionContainer.action-container(
+                        v-if="cell.action"
+                        :cell="cell"
+                    )
 
-                .text {{ column.title }}
+                    UiLink(
+                        v-if="cell.to || cell.href"
+                        :to="cell.to"
+                        :href="cell.href"
+                        :target="cell.target || ''"
+                    ) {{ cell.title }}
 
-                UiIconChevronDown.sorting(
-                    slot="icon"
-                    :size="28"
-                    :class="sortOrders[column.title] > 0 ? '_dec' : '_inc'"
-                )
-
-        .tr(
-            v-for="row in filteredRows"
-            :key="row.id"
-        )
-            .td(
-                v-for="cell in row"
-                :key="cell.id"
-                :class="getCellViewClass(cell)"
-            )
-                UiGridActionContainer.action-container(
-                    v-if="cell.action"
-                    :cell="cell"
-                )
-
-                UiLink(
-                    v-if="cell.to || cell.href"
-                    :to="cell.to"
-                    :href="cell.href"
-                    :target="cell.target || ''"
-                ) {{ cell.title }}
-
-                .text(
-                    v-else
-                ) {{ cell.title }}
+                    .text(
+                        v-else
+                    ) {{ cell.title }}
 </template>
 
 <style lang="scss" scoped>
@@ -185,6 +186,11 @@ export default class UiGrid extends Vue {
     @import '~/components/ui-kit/styles/typography.scss';
 
     $border: 2px solid $ui-kit-color-border;
+
+    .table-container {
+        overflow-x: auto;
+        overflow-y: visible;
+    }
 
     .table {
         display: table;
@@ -209,7 +215,8 @@ export default class UiGrid extends Vue {
         .icon {
             position: absolute;
             left: 17px;
-            top: 18px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .text {
@@ -277,5 +284,15 @@ export default class UiGrid extends Vue {
         right: 15px;
         visibility: hidden;
         color: $ui-kit-color-placeholder-text;
+    }
+
+    @media (max-width: 1679px) {
+        .td,
+        .th {
+            .text,
+            .link {
+                font-size: 20px;
+            }
+        }
     }
 </style>

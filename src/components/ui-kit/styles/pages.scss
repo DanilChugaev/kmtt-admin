@@ -21,3 +21,21 @@
         margin-bottom: 64px;
     }
 }
+
+@media (max-width: 1679px) {
+    .page {
+        padding: 30px 40px;
+    }
+
+    .title {
+        &._section {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        &._main {
+            font-size: 30px;
+            margin-bottom: 64px;
+        }
+    }
+}

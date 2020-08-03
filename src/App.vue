@@ -83,6 +83,7 @@ export default class App extends Vue {
 
     ::-webkit-scrollbar {
         width: 5px;
+        height: 5px;
     }
 
     ::-webkit-scrollbar-thumb {

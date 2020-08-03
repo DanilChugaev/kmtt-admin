@@ -97,4 +97,11 @@ export default class UiGridActionContainer extends Vue {
         color: $ui-kit-color-main-text;
         font-weight: 500;
     }
+
+    @media (max-width: 1679px) {
+        .link {
+            font-size: 20px;
+            padding: 15px 20px;
+        }
+    }
 </style>

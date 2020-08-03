@@ -206,4 +206,16 @@ export default class UiInput extends Vue {
             background-color: transparent;
         }
     }
+
+    @media (max-width: 1679px) {
+        .input {
+            font-size: 20px;
+        }
+
+        .button {
+            &._has-icon {
+                padding: 4px;
+            }
+        }
+    }
 </style>
