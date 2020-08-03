@@ -4,7 +4,10 @@ import { Component, Prop, Emit } from 'vue-property-decorator';
 
 @Component
 export default class UiButton extends Vue {
-    /** Нативный атрибут type */
+    /**
+     * Нативный атрибут type
+     * @type {string}
+     */
     @Prop({
         default: 'button',
         validator(value) {
@@ -12,7 +15,10 @@ export default class UiButton extends Vue {
         },
     }) readonly type!: string;
 
-    /** Фон кнопки */
+    /**
+     * Фон кнопки
+     * @type {string}
+     */
     @Prop({
         default: 'blue',
         validator(value) {
@@ -20,7 +26,10 @@ export default class UiButton extends Vue {
         },
     }) readonly background!: string;
 
-    /** Заблокирована ли кнопка */
+    /**
+     * Заблокирована ли кнопка
+     * @type {boolean}
+     */
     @Prop({
         default: false,
     }) readonly disabled!: boolean;
