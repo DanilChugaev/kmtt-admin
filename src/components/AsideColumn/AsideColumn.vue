@@ -4,6 +4,7 @@ import { Component, Prop } from 'vue-property-decorator';
 
 import UiList from '~/components/ui-kit/UiList/UiList.vue';
 import UiLink from '~/components/ui-kit/UiLink/UiLink.vue';
+import UiIconLayers from '~/components/ui-kit/UiIcons/UiIconLayers.vue';
 import AsideColumnHead from "~/components/AsideColumn/AsideColumnHead.vue";
 
 import ListItem from "~/interfaces/ListItem.ts";
@@ -15,6 +16,7 @@ import Section from "~/interfaces/Section.ts";
         AsideColumnHead,
         UiList,
         UiLink,
+        UiIconLayers,
     },
 })
 export default class AsideColumn extends Vue {
@@ -104,6 +106,17 @@ export default class AsideColumn extends Vue {
                         :to="generateRouteParams(section, item)"
                         :hasDashed="false"
                     ) {{ item.name }}
+
+            UiLink.link._component-list(
+                to="/dummy"
+                :hasDashed="false"
+                :iconPositionLeft="40"
+            )
+                UiIconLayers(
+                    size="38"
+                    slot="icon"
+                )
+                | Библиотека компонентов
 </template>
 
 <style lang="scss" scoped>
@@ -134,6 +147,17 @@ export default class AsideColumn extends Vue {
 
         &.router-link-exact-active {
             background-color: $ui-kit-color-background-hover;
+        }
+
+        &._component-list {
+            margin-top: 40px;
+            letter-spacing: -1px;
+            font-weight: 500;
+            padding-left: 98px;
+
+            &:hover {
+                background-color: $ui-kit-color-background-hover;
+            }
         }
     }
 

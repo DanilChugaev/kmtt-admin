@@ -7,6 +7,7 @@ import NumberLinkCase from './cases/NumberLinkCase.vue';
 import IconLinkCase from './cases/IconLinkCase.vue';
 import SPALinkCase from './cases/SPALinkCase.vue';
 import DynamicPropsLinkCase from './cases/DynamicPropsLinkCase.vue';
+import IconPositionLinkCase from './cases/IconPositionLinkCase.vue';
 
 @Component({
     components: {
@@ -15,6 +16,7 @@ import DynamicPropsLinkCase from './cases/DynamicPropsLinkCase.vue';
         IconLinkCase,
         SPALinkCase,
         DynamicPropsLinkCase,
+        IconPositionLinkCase,
     },
 })
 export default class UiLinkStories extends Vue {}
@@ -27,6 +29,7 @@ export default class UiLinkStories extends Vue {}
         IconLinkCase.mb-20
         SPALinkCase.mb-20
         DynamicPropsLinkCase.mb-20
+        IconPositionLinkCase.mb-20
 </template>
 
 <style lang="scss">

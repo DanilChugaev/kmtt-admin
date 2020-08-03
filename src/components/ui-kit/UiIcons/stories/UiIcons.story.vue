@@ -14,6 +14,7 @@ import UiIconSearchCase from './cases/UiIconSearchCase.vue';
 import UiIconSettingsCase from './cases/UiIconSettingsCase.vue';
 import UiIconUserCase from './cases/UiIconUserCase.vue';
 import UiIconWarningCase from './cases/UiIconWarningCase.vue';
+import UiIconLayersCase from './cases/UiIconLayersCase.vue';
 
 @Component({
     components: {
@@ -29,6 +30,7 @@ import UiIconWarningCase from './cases/UiIconWarningCase.vue';
         UiIconSettingsCase,
         UiIconUserCase,
         UiIconWarningCase,
+        UiIconLayersCase,
     },
 })
 export default class UiIconsStories extends Vue {}
@@ -48,6 +50,7 @@ export default class UiIconsStories extends Vue {}
         UiIconSettingsCase.mb-20
         UiIconUserCase.mb-20
         UiIconWarningCase.mb-20
+        UiIconLayersCase.mb-20
 </template>
 
 <style lang="scss">

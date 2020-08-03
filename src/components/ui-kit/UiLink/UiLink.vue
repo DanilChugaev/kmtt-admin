@@ -10,6 +10,7 @@ interface DynamicPropsLink {
     target?: string,
     rel?: string,
     hasDashed?: boolean,
+    iconPositionLeft?: number,
 }
 
 @Component
@@ -55,6 +56,14 @@ export default class UiLink extends Vue {
     }) readonly hasDashed!: boolean;
 
     /**
+     * Явно указываем отступ слева у иконки
+     * @type {number}
+     */
+    @Prop({
+        default: undefined,
+    }) readonly iconPositionLeft!: number;
+
+    /**
      * Динамические пропсы
      * @type {DynamicPropsLink}
      */
@@ -79,6 +88,16 @@ export default class UiLink extends Vue {
         }
 
         return result;
+    }
+
+    /**
+     * Навешиваем стили на иконку
+     * @return {object}
+     */
+    get viewIconStyle(): object {
+        return {
+            left: `${this.iconPositionLeft}px`,
+        };
     }
 
     /**
@@ -118,7 +137,10 @@ export default class UiLink extends Vue {
         :class="viewClass"
         @click.native="click"
     )
-        .icon(v-if="hasIconSlot")
+        .icon(
+            v-if="hasIconSlot"
+            :style="viewIconStyle"
+        )
             slot(name="icon")
         .content(v-if="hasDefaultSlot")
             slot
@@ -130,7 +152,10 @@ export default class UiLink extends Vue {
         :class="viewClass"
         @click="click"
     )
-        .icon(v-if="hasIconSlot")
+        .icon(
+            v-if="hasIconSlot"
+            :style="viewIconStyle"
+        )
             slot(name="icon")
         .content(v-if="hasDefaultSlot")
             slot
@@ -158,8 +183,8 @@ export default class UiLink extends Vue {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 33px;
-            height: 33px;
+            min-width: 20px;
+            min-height: 20px;
             position: absolute;
             top: 50%;
             left: 25px;
